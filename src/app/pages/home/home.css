@@ -1,0 +1,247 @@
+.hero {
+  text-align: center;
+  padding: 80px 0 64px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  background: rgba(47, 129, 247, 0.1);
+  border: 1px solid rgba(47, 129, 247, 0.3);
+  border-radius: 20px;
+  color: var(--cor-primaria);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.destaque {
+  color: var(--cor-primaria);
+}
+
+.hero-descricao {
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 36px;
+  color: var(--cor-texto-secundario);
+}
+
+.hero-acoes {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 48px;
+}
+
+.btn-primario {
+  padding: 12px 28px;
+  background: var(--cor-primaria);
+  color: #fff;
+  border-radius: var(--raio);
+  font-weight: 500;
+  font-size: 15px;
+  transition: background 0.2s;
+}
+
+.btn-primario:hover {
+  background: var(--cor-primaria-hover);
+  color: #fff;
+}
+
+.btn-secundario {
+  padding: 12px 28px;
+  background: transparent;
+  color: var(--cor-texto-secundario);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  font-size: 15px;
+  transition: all 0.2s;
+}
+
+.btn-secundario:hover {
+  border-color: var(--cor-texto-secundario);
+  color: var(--cor-texto);
+}
+
+.hero-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 24px;
+  background: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-lg);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.stat-numero {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--cor-texto);
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--cor-texto-secundario);
+}
+
+.stat-sep {
+  width: 1px;
+  height: 40px;
+  background: var(--cor-borda);
+}
+
+.secao {
+  margin-top: 80px;
+}
+
+.secao h2 {
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+
+.modulos-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--cor-borda);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-lg);
+  overflow: hidden;
+}
+
+.modulo-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 24px;
+  background: var(--cor-fundo-card);
+  color: var(--cor-texto);
+  transition: background 0.2s;
+}
+
+.modulo-card:hover {
+  background: var(--cor-fundo-hover);
+  color: var(--cor-texto);
+}
+
+.modulo-icone {
+  font-size: 28px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.modulo-info h3 {
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.modulo-info p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.modulo-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nivel {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 20px;
+  text-transform: capitalize;
+}
+
+.nivel.iniciante {
+  background: rgba(63, 185, 80, 0.1);
+  color: var(--cor-sucesso);
+  border: 1px solid rgba(63, 185, 80, 0.2);
+}
+
+.nivel.intermediario {
+  background: rgba(210, 153, 34, 0.1);
+  color: var(--cor-aviso);
+  border: 1px solid rgba(210, 153, 34, 0.2);
+}
+
+.nivel.avancado {
+  background: rgba(248, 81, 73, 0.1);
+  color: var(--cor-erro);
+  border: 1px solid rgba(248, 81, 73, 0.2);
+}
+
+.aulas-count {
+  font-size: 12px;
+  color: var(--cor-texto-secundario);
+}
+
+.destaque-secao {
+  padding: 48px;
+  background: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-lg);
+}
+
+.destaque-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.destaque-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.destaque-icone {
+  font-size: 28px;
+}
+
+.destaque-card h3 {
+  font-size: 16px;
+}
+
+.destaque-card p {
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .hero-acoes {
+    flex-direction: column;
+  }
+
+  .hero-stats {
+    gap: 20px;
+  }
+
+  .destaque-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,67 @@
+<div class="hero">
+  <div class="hero-badge">Em português · Gratuito · Atualizado para 2026</div>
+  <h1>Aprenda Angular<br><span class="destaque">do zero ao deploy</span></h1>
+  <p class="hero-descricao">
+    Um curso escrito em português, baseado em experiência real,
+    cobrindo tudo que você precisa para se tornar um desenvolvedor Angular júnior.
+  </p>
+  <div class="hero-acoes">
+    <a routerLink="/modulos" class="btn-primario">Começar agora</a>
+    <a routerLink="/glossario" class="btn-secundario">Ver glossário</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-numero">{{ modulos.length }}</span>
+      <span class="stat-label">módulos</span>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat">
+      <span class="stat-numero">{{ totalAulas }}</span>
+      <span class="stat-label">aulas</span>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat">
+      <span class="stat-numero">100%</span>
+      <span class="stat-label">em português</span>
+    </div>
+  </div>
+</div>
+
+<div class="secao">
+  <h2>O que você vai aprender</h2>
+  <div class="modulos-grid">
+    @for (modulo of modulos; track modulo.id) {
+      <a [routerLink]="['/modulo', modulo.id]" class="modulo-card">
+        <span class="modulo-icone">{{ modulo.icone }}</span>
+        <div class="modulo-info">
+          <h3>{{ modulo.titulo }}</h3>
+          <p>{{ modulo.descricao }}</p>
+          <div class="modulo-meta">
+            <span class="nivel" [class]="modulo.nivel">{{ modulo.nivel }}</span>
+            <span class="aulas-count">{{ modulo.aulas.length }} aulas</span>
+          </div>
+        </div>
+      </a>
+    }
+  </div>
+</div>
+
+<div class="secao destaque-secao">
+  <div class="destaque-grid">
+    <div class="destaque-card">
+      <span class="destaque-icone">🤖</span>
+      <h3>Desenvolvido com Claude</h3>
+      <p>Todo o conteúdo foi construído ao longo de uma jornada real de aprendizado, com dicas de como usar IA no seu desenvolvimento diário.</p>
+    </div>
+    <div class="destaque-card">
+      <span class="destaque-icone">🇧🇷</span>
+      <h3>100% em português</h3>
+      <p>Material técnico de qualidade em português ainda é escasso. Aqui você aprende com clareza, sem barreiras de idioma.</p>
+    </div>
+    <div class="destaque-card">
+      <span class="destaque-icone">🚀</span>
+      <h3>Do zero ao mercado</h3>
+      <p>Além do código, você aprende as ferramentas, o vocabulário e as soft skills que fazem diferença em entrevistas e no trabalho.</p>
+    </div>
+  </div>
+</div>
