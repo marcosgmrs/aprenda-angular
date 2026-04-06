@@ -18,4 +18,38 @@
       </div>
     }
   </div>
+
+  <!-- Nova Seção: Simulações de Conversa -->
+  <section class="simulacoes-secao">
+    <div class="secao-header">
+      <div class="header-badge">Papo de Dev</div>
+      <h2>Simulações de Conversa Real</h2>
+      <p>Aprenda a se comunicar com gestores e colegas em situações do dia a dia.</p>
+    </div>
+
+    <div class="simulacoes-grid">
+      @for (c of conversas(); track c.titulo) {
+        <div class="simulacao-card">
+          <div class="card-topo">
+            <h3>{{ c.titulo }}</h3>
+            <p class="contexto"><strong>Contexto:</strong> {{ c.contexto }}</p>
+          </div>
+          
+          <div class="dialogo-area">
+            @for (item of c.dialogo; track item.fala) {
+              <div class="fala-item" [class.is-user]="item.autor === 'Você'">
+                <span class="autor">{{ item.autor }}:</span>
+                <p class="fala">{{ item.fala }}</p>
+              </div>
+            }
+          </div>
+
+          <div class="conselho-footer">
+            <span class="conselho-label">💡 Conselho:</span>
+            <p>{{ c.conselho }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
 </div>

@@ -5,6 +5,7 @@ interface Ferramenta {
   descricao: string;
   url: string;
   icone: string;
+  categoria: 'Angular' | 'DevOps' | 'Design' | 'Testes' | 'Produtividade';
 }
 
 @Component({
@@ -17,39 +18,80 @@ export class Ferramentas {
   ferramentas = signal<Ferramenta[]>([
     {
       nome: 'Angular.io',
-      descricao: 'A documentação oficial do Angular. Tudo o que você precisa saber, direto da fonte.',
+      descricao: 'Documentação oficial. O ponto de partida obrigatório para qualquer dúvida técnica.',
       url: 'https://angular.dev',
-      icone: '🅰️'
+      icone: '🅰️',
+      categoria: 'Angular'
     },
     {
       nome: 'Angular CLI',
-      descricao: 'A ferramenta de linha de comando oficial para criar e gerenciar apps Angular.',
+      descricao: 'Gerencia o ciclo de vida do seu projeto (ng new, ng serve, ng build).',
       url: 'https://angular.dev/tools/cli',
-      icone: '⌨️'
-    },
-    {
-      nome: 'StackBlitz',
-      descricao: 'O melhor editor online para testar código Angular instantaneamente no navegador.',
-      url: 'https://stackblitz.com',
-      icone: '⚡'
+      icone: '⌨️',
+      categoria: 'Angular'
     },
     {
       nome: 'Angular DevTools',
-      descricao: 'Extensão do Chrome/Firefox para debugar e analisar a performance de apps Angular.',
+      descricao: 'Debug de performance e inspeção da árvore de componentes no navegador.',
       url: 'https://angular.dev/tools/devtools',
-      icone: '🔍'
+      icone: '🔍',
+      categoria: 'Angular'
     },
     {
-      nome: 'PrimeNG',
-      descricao: 'Uma das bibliotecas de componentes UI mais populares para Angular.',
-      url: 'https://primeng.org',
-      icone: '🎨'
+      nome: 'Postman',
+      descricao: 'Indispensável para testar APIs antes de integrá-las ao seu código Angular.',
+      url: 'https://www.postman.com',
+      icone: '🚀',
+      categoria: 'Produtividade'
     },
     {
-      nome: 'RxJS Tools',
-      descricao: 'Visualizador de operadores RxJS para ajudar a entender fluxos reativos.',
-      url: 'https://rxmarbles.com',
-      icone: '🎢'
+      nome: 'Figma',
+      descricao: 'Onde você verá os designs que precisará transformar em componentes.',
+      url: 'https://www.figma.com',
+      icone: '🎨',
+      categoria: 'Design'
+    },
+    {
+      nome: 'Cypress',
+      descricao: 'Ferramenta líder para testes de ponta a ponta (E2E) simulando o usuário real.',
+      url: 'https://www.cypress.io',
+      icone: '🌲',
+      categoria: 'Testes'
+    },
+    {
+      nome: 'Jest',
+      descricao: 'Framework de testes unitários ultrarrápido, uma ótima alternativa ao Karma.',
+      url: 'https://jestjs.io',
+      icone: '🃏',
+      categoria: 'Testes'
+    },
+    {
+      nome: 'Prettier',
+      descricao: 'Formatador de código que garante que o projeto tenha um estilo visual único.',
+      url: 'https://prettier.io',
+      icone: '✨',
+      categoria: 'Produtividade'
+    },
+    {
+      nome: 'ESLint',
+      descricao: 'Encontra erros e padrões ruins de código antes mesmo de você rodar a app.',
+      url: 'https://eslint.org',
+      icone: '🚨',
+      categoria: 'Produtividade'
+    },
+    {
+      nome: 'StackBlitz',
+      descricao: 'Editor online ideal para prototipar ideias e compartilhar exemplos rápidos.',
+      url: 'https://stackblitz.com',
+      icone: '⚡',
+      categoria: 'Produtividade'
+    },
+    {
+      nome: 'Claude Code CLI',
+      descricao: 'Acelerador de desenvolvimento IA que integra o modelo Claude ao seu terminal.',
+      url: 'https://github.com/anthropic-ai/claude-code',
+      icone: '🤖',
+      categoria: 'Produtividade'
     }
   ]);
 }
