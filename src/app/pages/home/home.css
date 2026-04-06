@@ -237,12 +237,16 @@
 @media (max-width: 900px) {
   .hero h1 { font-size: 3rem; }
   .destaque-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .hero-stats { gap: 2rem; flex-wrap: wrap; }
+  .hero-stats { gap: 2rem; flex-wrap: wrap; padding: 1.5rem; }
+  .stat-numero { font-size: 2rem; }
 }
 
 @media (max-width: 600px) {
-  .hero { padding: 80px 0 40px; }
-  .hero h1 { font-size: 2.5rem; }
-  .hero-acoes { flex-direction: column; }
-  .destaque-secao { padding: 2rem; }
+  .hero { padding: 60px 20px 40px; }
+  .hero h1 { font-size: 2.2rem; }
+  .hero-descricao { font-size: 1.1rem; }
+  .hero-acoes { flex-direction: column; width: 100%; }
+  .btn-primario, .btn-secundario { width: 100%; text-align: center; }
+  .destaque-secao { padding: 1.5rem; margin-top: 4rem; }
+  .modulos-grid { grid-template-columns: 1fr; }
 }

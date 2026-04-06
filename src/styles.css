@@ -127,3 +127,22 @@ p {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* Responsividade Global */
+@media (max-width: 768px) {
+  :root {
+    --raio-lg: 16px;
+  }
+
+  body {
+    font-size: 15px;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .secao {
+    padding: 40px 0;
+  }
+}

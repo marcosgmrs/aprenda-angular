@@ -87,7 +87,11 @@ h1 {
 }
 
 @media (max-width: 768px) {
-  h1 { font-size: 2.5rem; }
+  .ferramentas-container { padding: 4rem 1rem; }
+  .banner { margin-bottom: 3rem; }
+  h1 { font-size: 2.2rem; }
+  .banner p { font-size: 1.1rem; }
   .ferramentas-grid { grid-template-columns: 1fr; }
-  .f-card { flex-direction: column; text-align: center; }
+  .f-card { flex-direction: column; text-align: center; gap: 1rem; padding: 1.5rem; }
+  .f-icone { margin: 0 auto; }
 }

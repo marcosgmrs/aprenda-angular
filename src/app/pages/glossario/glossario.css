@@ -91,6 +91,10 @@ h3 {
 }
 
 @media (max-width: 768px) {
-  h1 { font-size: 2.5rem; }
+  .glossario-container { padding: 4rem 1rem; }
+  .secao-header { margin-bottom: 3rem; }
+  h1 { font-size: 2.2rem; }
+  .secao-header p { font-size: 1.1rem; }
   .glossario-grid { grid-template-columns: 1fr; }
+  .termo-card { padding: 1.5rem; }
 }
