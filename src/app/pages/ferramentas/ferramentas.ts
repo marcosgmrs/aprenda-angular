@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 interface Ferramenta {
   nome: string;
@@ -13,6 +13,7 @@ interface Ferramenta {
   imports: [],
   templateUrl: './ferramentas.html',
   styleUrl: './ferramentas.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Ferramentas {
   ferramentas = signal<Ferramenta[]>([

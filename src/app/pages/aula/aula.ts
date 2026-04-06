@@ -1,4 +1,4 @@
-import { Component, OnInit, signal, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, signal, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CursoService, Aula as AulaData, Modulo } from '../../services/curso';
 import { ProgressoService } from '../../services/progresso';
@@ -8,6 +8,7 @@ import { ProgressoService } from '../../services/progresso';
   imports: [RouterLink],
   templateUrl: './aula.html',
   styleUrl: './aula.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Aula implements OnInit {
   private route = inject(ActivatedRoute);

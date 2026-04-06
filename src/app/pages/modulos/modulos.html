@@ -8,7 +8,7 @@
     <span class="nivel-badge iniciante">Iniciante</span>
   </div>
   <div class="modulos-lista">
-    @for (modulo of iniciantes; track modulo.id) {
+    @for (modulo of iniciantes(); track modulo.id) {
       <a [routerLink]="['/modulo', modulo.id]" class="modulo-item">
         <span class="modulo-icone">{{ modulo.icone }}</span>
         <div class="modulo-info">
@@ -29,7 +29,7 @@
     <span class="nivel-badge intermediario">Intermediário</span>
   </div>
   <div class="modulos-lista">
-    @for (modulo of intermediarios; track modulo.id) {
+    @for (modulo of intermediarios(); track modulo.id) {
       <a [routerLink]="['/modulo', modulo.id]" class="modulo-item">
         <span class="modulo-icone">{{ modulo.icone }}</span>
         <div class="modulo-info">

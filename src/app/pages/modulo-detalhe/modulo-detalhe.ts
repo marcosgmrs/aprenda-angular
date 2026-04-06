@@ -1,4 +1,4 @@
-import { Component, OnInit, signal, inject, computed } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, signal, inject, computed } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CursoService, Modulo } from '../../services/curso';
 import { ProgressoService } from '../../services/progresso';
@@ -7,7 +7,8 @@ import { ProgressoService } from '../../services/progresso';
   selector: 'app-modulo-detalhe',
   imports: [RouterLink],
   templateUrl: './modulo-detalhe.html',
-  styleUrl: './modulo-detalhe.css'
+  styleUrl: './modulo-detalhe.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModuloDetalhe implements OnInit {
   private route = inject(ActivatedRoute);

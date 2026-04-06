@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 interface Termo {
   id: string;
@@ -12,6 +12,7 @@ interface Termo {
   imports: [],
   templateUrl: './glossario.html',
   styleUrl: './glossario.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Glossario {
   termos = signal<Termo[]>([

@@ -1,25 +1,18 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CursoService, Modulo } from '../../services/curso';
+import { CursoService } from '../../services/curso';
 
 @Component({
   selector: 'app-modulos',
   imports: [RouterLink],
   templateUrl: './modulos.html',
-  styleUrl: './modulos.css'
+  styleUrl: './modulos.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Modulos {
-  modulos: Modulo[]
+  private cursoService = inject(CursoService);
 
-  constructor(private cursoService: CursoService) {
-    this.modulos = this.cursoService.getModulos()
-  }
-
-  get iniciantes() {
-    return this.modulos.filter(m => m.nivel === 'iniciante')
-  }
-
-  get intermediarios() {
-    return this.modulos.filter(m => m.nivel === 'intermediario')
-  }
+  modulos = this.cursoService.getModulos();
+  iniciantes = computed(() => this.modulos.filter(m => m.nivel === 'iniciante'));
+  intermediarios = computed(() => this.modulos.filter(m => m.nivel === 'intermediario'));
 }

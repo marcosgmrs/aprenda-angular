@@ -1,21 +1,17 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CursoService, Modulo } from '../../services/curso';
+import { CursoService } from '../../services/curso';
 
 @Component({
   selector: 'app-home',
   imports: [RouterLink],
   templateUrl: './home.html',
-  styleUrl: './home.css'
+  styleUrl: './home.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Home {
-  modulos: Modulo[]
+  private cursoService = inject(CursoService);
 
-  constructor(private cursoService: CursoService) {
-    this.modulos = this.cursoService.getModulos()
-  }
-
-  get totalAulas(): number {
-    return this.modulos.reduce((total, m) => total + m.aulas.length, 0)
-  }
+  modulos = this.cursoService.getModulos();
+  totalAulas = computed(() => this.modulos.reduce((total, m) => total + m.aulas.length, 0));
 }
