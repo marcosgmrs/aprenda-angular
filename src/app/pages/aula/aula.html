@@ -1,1 +1,126 @@
-<p>aula works!</p>
+@if (aula() && modulo()) {
+  <div class="aula-container">
+    <!-- Header da Aula -->
+    <header class="aula-header">
+      <div class="breadcrumb">
+        <a routerLink="/modulos">Cursos</a>
+        <span class="sep">/</span>
+        <a [routerLink]="['/modulo', modulo()!.id]">{{ modulo()!.titulo }}</a>
+      </div>
+      
+      <div class="titulo-area">
+        <h1>{{ aula()!.titulo }}</h1>
+        <div class="meta">
+          <span class="duracao">⏱️ {{ aula()!.duracao }}</span>
+          @if (aula()!.tempoEstimado) {
+            <span class="tempo-estimado">📚 Estudo sugerido: {{ aula()!.tempoEstimado }}</span>
+          }
+          <button 
+            class="badge-concluido" 
+            [class.is-completa]="isCompleta()"
+            (click)="toggleProgresso()"
+          >
+            {{ isCompleta() ? '✅ Concluída' : '⭕ Marcar como concluída' }}
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Banner Opcional -->
+    @if (aula()!.imagemUrl) {
+      <div class="aula-imagem">
+        <img [src]="aula()!.imagemUrl" [alt]="aula()!.titulo">
+      </div>
+    }
+
+    <!-- Conteúdo da Aula -->
+    <main class="aula-conteudo">
+      <div class="texto-principal">
+        {{ aula()!.conteudo }}
+      </div>
+
+      <!-- Vídeo -->
+      @if (aula()!.videoUrl) {
+        <div class="video-preview">
+           <a [href]="aula()!.videoUrl" target="_blank" class="btn-video">
+             📺 Ver Videoaula Recomendada (Youtube)
+           </a>
+        </div>
+      }
+
+      @if (aula()!.codigo) {
+        <div class="codigo-bloco">
+          <div class="codigo-header">
+            <span>TypeScript / HTML</span>
+          </div>
+          <pre><code>{{ aula()!.codigo }}</code></pre>
+        </div>
+      }
+
+      @if (aula()!.dica) {
+        <div class="dica-card">
+          <span class="dica-label">💡 Dica do Instrutor</span>
+          <p>{{ aula()!.dica }}</p>
+        </div>
+      }
+
+      <!-- Links Externos -->
+      @if (aula()!.linksExternos && aula()!.linksExternos!.length > 0) {
+        <div class="links-secao">
+          <h4>🔗 Material Auxiliar</h4>
+          <div class="links-grid">
+            @for (link of aula()!.linksExternos; track link.url) {
+              <a [href]="link.url" target="_blank" class="material-link">
+                {{ link.titulo }}
+              </a>
+            }
+          </div>
+        </div>
+      }
+
+      <!-- Tarefa Prática -->
+      @if (aula()!.tarefa) {
+        <div class="tarefa-card">
+          <span class="tarefa-label">📝 Próximo Passo (Mão na Massa)</span>
+          <p>{{ aula()!.tarefa }}</p>
+        </div>
+      }
+    </main>
+
+    <!-- Navegação Inferior -->
+    <footer class="aula-footer">
+      <div class="nav-botoes">
+        @if (aulaAnteriorId()) {
+          <a [routerLink]="['/aula', aulaAnteriorId()]" class="btn-nav">
+            <span class="seta">←</span> Aula Anterior
+          </a>
+        } @else {
+          <div></div>
+        }
+
+        <button 
+          class="btn-concluir-principal" 
+          [class.is-completa]="isCompleta()"
+          (click)="toggleProgresso()"
+        >
+          {{ isCompleta() ? 'Aula Concluída!' : 'Concluir Aula' }}
+        </button>
+
+        @if (proximaAulaId()) {
+          <a [routerLink]="['/aula', proximaAulaId()]" class="btn-nav proxima">
+            Próxima Aula <span class="seta">→</span>
+          </a>
+        } @else {
+          <a [routerLink]="['/modulo', modulo()!.id]" class="btn-nav">
+             Fim do Módulo <span class="seta">🏠</span>
+          </a>
+        }
+      </div>
+    </footer>
+  </div>
+} @else {
+  <div class="nao-encontrado">
+    <p>Aula não encontrada.</p>
+    <a routerLink="/modulos">Voltar aos módulos</a>
+  </div>
+}

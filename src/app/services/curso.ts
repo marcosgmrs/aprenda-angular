@@ -1,22 +1,32 @@
 import { Injectable } from '@angular/core';
 
+export interface LinkExterno {
+  titulo: string;
+  url: string;
+}
+
 export interface Aula {
-  id: string
-  titulo: string
-  descricao: string
-  duracao: string
-  conteudo: string
-  codigo?: string
-  dica?: string
+  id: string;
+  titulo: string;
+  descricao: string;
+  duracao: string; // Ex: "10 min"
+  tempoEstimado?: string; // Ex: "15-20 min de estudo prático"
+  conteudo: string;
+  codigo?: string;
+  dica?: string;
+  videoUrl?: string;
+  linksExternos?: LinkExterno[];
+  tarefa?: string;
+  imagemUrl?: string;
 }
 
 export interface Modulo {
-  id: string
-  titulo: string
-  descricao: string
-  icone: string
-  nivel: 'iniciante' | 'intermediario' | 'avancado'
-  aulas: Aula[]
+  id: string;
+  titulo: string;
+  descricao: string;
+  icone: string;
+  nivel: 'iniciante' | 'intermediario' | 'avancado';
+  aulas: Aula[];
 }
 
 @Injectable({
@@ -25,271 +35,379 @@ export interface Modulo {
 export class CursoService {
   private modulos: Modulo[] = [
     {
+      id: 'boas-vindas',
+      titulo: 'Começando a Jornada',
+      descricao: 'Prepare seu computador e sua mente para se tornar um desenvolvedor Angular de elite.',
+      icone: '🚀',
+      nivel: 'iniciante',
+      aulas: [
+        {
+          id: 'bem-vindo',
+          titulo: 'Bem-vindo ao Curso!',
+          descricao: 'Uma visão geral do que vamos construir e como aprender melhor.',
+          duracao: '5 min',
+          tempoEstimado: '10 min de leitura e reflexão',
+          conteudo: `Este projeto foi criado por e para desenvolvedores que buscam excelência. Não é apenas mais um tutorial; é um guia de sobrevivência no mundo real.
+
+Aprender Angular pode parecer desafiador no início, mas com a abordagem correta — focando nos fundamentos e usando a IA como aliada — você chegará lá mais rápido do que imagina.
+
+Este projeto é **para seu uso pessoal**, um diário de bordo e material de referência constante. Sinta-se em casa!`,
+          dica: 'Não tente decorar tudo. O importante é entender o "porquê". O "como" você sempre pode consultar aqui ou perguntar ao Claude.',
+          linksExternos: [
+            { titulo: 'Documentação Oficial Angular', url: 'https://angular.dev' }
+          ]
+        },
+        {
+          id: 'claude-ai-parceiro',
+          titulo: 'Claude: Seu Mentor 24/7',
+          descricao: 'Como usar a Inteligência Artificial para acelerar seu aprendizado sem "trapalhar".',
+          duracao: '15 min',
+          tempoEstimado: '20 min (leitura + primeiro prompt)',
+          conteudo: `Em 2026, não usar IA é como tentar cavar um túnel com uma colher. O Claude (da Anthropic) será nosso mentor principal.
+
+Nesta aula, vamos aprender a configurar o **Claude Code CLI**. Ele permite que a IA "veja" seu código diretamente no seu terminal, facilitando muito a correção de erros e a criação de novas funcionalidades.`,
+          codigo: `# No Mac ou PowerShell (requer Node.js instalado)
+npm install -g @anthropic-ai/claude-code
+
+# Para iniciar no seu projeto
+claude`,
+          tarefa: 'Instale o Claude Code CLI e digite "claude" na pasta do seu projeto. Tente perguntar: "Claude, o que este projeto faz?"',
+          dica: 'O Claude Code tem um "Play Mode". Ele ajuda você a sugerir mudanças e explica cada passo. É a melhor forma de aprender enquanto codifica.'
+        },
+        {
+          id: 'terminal-e-git',
+          titulo: 'Terminal e Git: O Básico do Profissional',
+          descricao: 'Comandos que você usará todo santo dia no trabalho.',
+          duracao: '20 min',
+          tempoEstimado: '40 min de prática intensiva',
+          conteudo: `O terminal é sua varinha mágica. O Git é sua máquina do tempo.
+Sem dominar esses dois, você não é um desenvolvedor, é apenas alguém que digita código.
+
+Vamos cobrir os comandos essenciais e como fazer seus primeiros commits.`,
+          codigo: `# Navegação básica
+ls          # lista arquivos
+cd pasta    # entra na pasta
+cd ..       # volta uma pasta
+mkdir nome  # cria pasta
+
+# Git 101
+git init              # inicia repositório
+git add .             # prepara arquivos
+git commit -m "msg"    # tira a "foto" (save)
+git status            # vê o que mudou`,
+          tarefa: 'Crie uma pasta de teste, inicie um git nela, crie um arquivo texto e faça seu primeiro commit.',
+          linksExternos: [
+            { titulo: 'Guia Visual do Git', url: 'https://git-scm.com/book/pt-br/v2' }
+          ]
+        }
+      ]
+    },
+    {
       id: 'fundamentos-web',
-      titulo: 'Fundamentos da Web',
-      descricao: 'Entenda como a internet funciona, o papel do navegador e os blocos de construção de qualquer página web.',
+      titulo: 'Fundamentos da Web (V2026)',
+      descricao: 'HTML Semântico e CSS Moderno. O esqueleto e a pele das suas aplicações.',
       icone: '🌐',
       nivel: 'iniciante',
       aulas: [
         {
-          id: 'como-web-funciona',
-          titulo: 'Como a web funciona',
-          descricao: 'O que acontece quando você digita um endereço no navegador.',
-          duracao: '10 min',
-          conteudo: `Quando você digita "google.com" no navegador e aperta Enter, uma série de eventos acontece em milissegundos.
-
-Primeiro, seu computador pergunta a um servidor DNS: "qual é o endereço IP de google.com?" — como uma lista telefônica da internet.
-
-Depois, seu navegador faz uma requisição HTTP para esse endereço: "me dá o conteúdo dessa página."
-
-O servidor responde com HTML, CSS e JavaScript — os três pilares de qualquer página web.
-
-Seu navegador lê esses arquivos e monta a página que você vê.
-
-Esse ciclo — requisição e resposta — é a base de tudo na web.`,
-          dica: 'Abra o DevTools (F12) e clique na aba Network para ver todas as requisições que seu navegador faz ao carregar uma página.'
-        },
-        {
-          id: 'html-moderno',
-          titulo: 'HTML moderno em 2026',
-          descricao: 'As tags essenciais e as boas práticas do HTML atual.',
-          duracao: '20 min',
-          conteudo: `HTML é a estrutura de toda página web. Pensa nele como o esqueleto — define o que existe na página, não como ela parece.
-
-Em 2026, HTML semântico é fundamental. Isso significa usar tags que descrevem o significado do conteúdo, não apenas sua aparência.
-
-Em vez de usar div para tudo, use as tags corretas:
-- header para o cabeçalho
-- nav para navegação  
-- main para o conteúdo principal
-- section para seções
-- article para conteúdo independente
-- footer para o rodapé
-
-HTML semântico melhora a acessibilidade, o SEO e a legibilidade do código.`,
-          codigo: `<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Minha Página</title>
-</head>
-<body>
-  <header>
-    <nav>
-      <a href="/">Início</a>
-      <a href="/sobre">Sobre</a>
-    </nav>
-  </header>
-
-  <main>
-    <section>
-      <h1>Título Principal</h1>
-      <p>Conteúdo da página.</p>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2026 Meu Site</p>
-  </footer>
-</body>
-</html>`,
-          dica: 'O atributo lang="pt-BR" no html é importante — diz ao navegador e leitores de tela que o conteúdo está em português brasileiro.'
-        }
-      ]
-    },
-    {
-      id: 'terminal-git',
-      titulo: 'Terminal e Git',
-      descricao: 'Domine a linha de comando e o controle de versão — ferramentas indispensáveis para qualquer dev.',
-      icone: '⌨️',
-      nivel: 'iniciante',
-      aulas: [
-        {
-          id: 'terminal-mac',
-          titulo: 'Terminal no Mac',
-          descricao: 'Navegue pelo sistema de arquivos usando apenas texto.',
+          id: 'html-semantico',
+          titulo: 'HTML Semântico e Acessibilidade',
+          descricao: 'Por que usar <div> para tudo é o maior erro de um iniciante.',
           duracao: '15 min',
-          conteudo: `O Terminal é a forma mais direta de dar ordens ao computador. Em vez de clicar em ícones, você digita comandos.
-
-Devs usam o Terminal porque muitas ferramentas simplesmente não têm interface gráfica — o Angular CLI, o Git, o Node.js. Sem Terminal, você não consegue usar essas ferramentas.
-
-Para abrir o Terminal no Mac: Command + Espaço, digita "Terminal", Enter.
-
-Os cinco comandos que você vai usar todo dia:
-- pwd — mostra em qual pasta você está
-- ls — lista o conteúdo da pasta atual
-- cd nome-da-pasta — entra em uma pasta
-- cd .. — volta uma pasta acima
-- mkdir nome — cria uma nova pasta`,
-          codigo: `# Navegação básica
-pwd                    # /Users/seunome
-ls                     # Desktop Documents Downloads...
-cd Desktop             # entra na pasta Desktop
-cd meus-projetos       # entra em meus-projetos
-cd ..                  # volta para Desktop
-mkdir novo-projeto     # cria a pasta novo-projeto
-code .                 # abre o VS Code na pasta atual`,
-          dica: 'Quando um comando funciona, o Terminal não fala nada — só volta o prompt. Silêncio é sucesso.'
+          tempoEstimado: '30 min de estudo',
+          conteudo: `HTML define o significado. <header>, <nav>, <main>, <footer>, <article>. 
+Usar as tags corretas ajuda o Google (SEO), ajuda cegos (leitores de tela) e ajuda VOCÊ a ler seu próprio código meses depois.`,
+          videoUrl: 'https://www.youtube.com/watch?v=kYJvW9R9t8Q',
+          tarefa: 'Identifique 3 sites famosos e tente perceber se eles usam tags semânticas ou apenas divs.',
+          dica: 'Pergunte ao Claude Code: "/review meu HTML" e ele te dirá se está semântico ou não.'
         },
         {
-          id: 'git-fundamentos',
-          titulo: 'Git — controle de versão',
-          descricao: 'Fotografe seu projeto ao longo do tempo e nunca perca trabalho.',
+          id: 'css-moderno-flex-grid',
+          titulo: 'CSS Moderno: Flexbox e Grid',
+          descricao: 'Esqueça os "floats" e posicionamentos manuais chatos.',
           duracao: '25 min',
-          conteudo: `Git é um sistema que fotografa seu projeto ao longo do tempo. Cada fotografia é chamada de commit. Você decide quando tirar cada foto e escreve uma legenda descrevendo o que mudou.
-
-Se algo der errado, você volta para qualquer foto anterior. É como ter um histórico infinito de "desfazer".
-
-O fluxo do dia a dia tem três etapas:
-1. git add . — seleciona o que vai na foto
-2. git commit -m "o que você fez" — tira a foto com legenda
-3. git push — envia a foto para a nuvem (GitHub)
-
-Três comandos. Toda vez. Todo dia.`,
-          codigo: `# Configuração inicial (uma vez só)
-git config --global user.name "Seu Nome"
-git config --global user.email "seu@email.com"
-
-# Iniciando um repositório
-git init
-git add .
-git commit -m "primeiro commit"
-
-# Conectando ao GitHub
-git remote add origin https://github.com/usuario/repo.git
-git push -u origin main
-
-# Fluxo do dia a dia
-git add .
-git commit -m "adiciona pagina de contato"
-git push`,
-          dica: 'Escreva mensagens de commit no imperativo e em português: "adiciona", "corrige", "atualiza" — não "adicionado" ou "adicionando".'
-        }
-      ]
-    },
-    {
-      id: 'javascript',
-      titulo: 'JavaScript',
-      descricao: 'A linguagem que dá vida às páginas web — do básico ao que você precisa para o Angular.',
-      icone: '☕',
-      nivel: 'iniciante',
-      aulas: [
-        {
-          id: 'variaveis-tipos',
-          titulo: 'Variáveis e tipos de dados',
-          descricao: 'Como guardar e manipular informações no JavaScript.',
-          duracao: '20 min',
-          conteudo: `Variável é uma caixa com um nome onde você guarda um valor. Em JavaScript moderno, usamos const e let.
-
-const — para valores que não mudam. Use sempre que possível.
-let — para valores que podem mudar.
-var — forma antiga, evite. Você vai ver em código legado mas não precisa usar.
-
-JavaScript tem alguns tipos básicos de dados:
-- String: texto entre aspas — "Olá mundo"
-- Number: número — 42 ou 3.14
-- Boolean: verdadeiro ou falso — true ou false
-- Array: lista de valores — [1, 2, 3]
-- Object: conjunto de propriedades — { nome: "Marcos", idade: 30 }`,
-          codigo: `// Variáveis
-const nome = "Marcos"        // nunca muda
-let idade = 30               // pode mudar
-idade = 31                   // ok
-
-// Tipos de dados
-const texto = "Olá mundo"
-const numero = 42
-const ativo = true
-const lista = ["HTML", "CSS", "JavaScript"]
-const pessoa = {
-  nome: "Marcos",
-  cidade: "São Gonçalo",
-  aprendendo: "Angular"
+          tempoEstimado: '1 hora de prática (essencial!)',
+          conteudo: `Flexbox é para layouts 1D (linhas ou colunas). Grid é para layouts 2D (áreas complexas). 
+Em 2026, quase tudo na web é feito combinando esses dois.`,
+          codigo: `.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-// Acessando propriedades do objeto
-console.log(pessoa.nome)      // Marcos
-console.log(pessoa.cidade)    // São Gonçalo`,
-          dica: 'Use const por padrão. Só troque para let quando souber que o valor vai mudar. Isso torna o código mais previsível.'
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}`,
+          linksExternos: [
+            { titulo: 'Guia Flexbox (CSS-Tricks)', url: 'https://css-tricks.com/snippets/css/a-guide-to-flexbox/' },
+            { titulo: 'Flexbox Froggy', url: 'https://flexboxfroggy.com/#pt-br' }
+          ]
         }
       ]
     },
     {
-      id: 'typescript',
-      titulo: 'TypeScript',
-      descricao: 'JavaScript com superpoderes — tipos que previnem erros antes do código rodar.',
+      id: 'javascript-masterclass',
+      titulo: 'JavaScript Masterclass',
+      descricao: 'A linguagem que faz tudo acontecer. O que você REALMENTE precisa saber.',
+      icone: '🟨',
+      nivel: 'iniciante',
+      aulas: [
+        {
+          id: 'es6-e-alem',
+          titulo: 'JavaScript Moderno (ES6+)',
+          descricao: 'Const, Let, Arrow Functions e Template Literals.',
+          duracao: '20 min',
+          tempoEstimado: '40 min de prática',
+          conteudo: `Angular exige JavaScript moderno. Você não verá "var" aqui. 
+Vamos aprender a usar Arrow Functions (funções de seta) que são mais curtas e resolvem problemas de escopo.`,
+          codigo: `// Moderno (Arrow Function)
+const somar = (a, b) => a + b;
+
+// Template Literals (Crase)
+const nome = "Angular";
+console.log(\`Olá, \${nome}!\`);`,
+          tarefa: 'Converta 3 funções tradicionais que você conhece para Arrow Functions.',
+          linksExternos: [
+            { titulo: 'Modern JS Cheat Sheet', url: 'https://mbeaudru.github.io/modern-js-cheatsheet/' }
+          ]
+        },
+        {
+          id: 'desestruturacao-e-spread',
+          titulo: 'Desestruturação e Spread Operator',
+          descricao: 'Manipulando Arrays e Objetos como um profissional.',
+          duracao: '15 min',
+          tempoEstimado: '30 min',
+          conteudo: `Desestruturação permite "extrair" valores de objetos de forma limpa. O Spread Operator (...) permite copiar ou mesclar coleções.`,
+          codigo: `const usuario = { nome: 'Marcos', idade: 30 };
+const { nome } = usuario;
+
+const lista = [1, 2];
+const novaLista = [...lista, 3]; // [1, 2, 3]`,
+          dica: 'Use o Spread Operator para garantir imutabilidade — um conceito que o Angular adora.'
+        }
+      ]
+    },
+    {
+      id: 'typescript-essencial',
+      titulo: 'TypeScript: O Superpoder',
+      descricao: 'Adicionando segurança e inteligência ao seu código.',
       icone: '🔷',
       nivel: 'intermediario',
       aulas: [
         {
-          id: 'por-que-typescript',
-          titulo: 'Por que TypeScript existe',
-          descricao: 'O problema que o TypeScript resolve e por que o Angular o usa.',
-          duracao: '15 min',
-          conteudo: `JavaScript foi criado em 10 dias, em 1995, para fazer coisas simples em páginas web. Hoje ele roda sistemas bancários, redes sociais, ferramentas como o VS Code.
-
-O problema: JavaScript não tem tipos. Isso significa que você pode passar um texto onde deveria ser um número — e o JavaScript não reclama.
-
-Exemplo clássico: somar("2", 3) retorna "23" em vez de 5. O JavaScript simplesmente colou os dois valores como texto. Silenciosamente. Sem aviso.
-
-TypeScript resolve isso adicionando tipos ao JavaScript. Se você tentar passar um texto onde deveria ser um número, o TypeScript avisa antes mesmo de você rodar o código — diretamente no VS Code, com sublinhado vermelho.
-
-Angular é escrito em TypeScript. Para entender Angular de verdade, você precisa entender TypeScript.`,
-          codigo: `// JavaScript — sem proteção
-function somar(a, b) {
-  return a + b
+          id: 'tipagem-basica',
+          titulo: 'Tipagem e Interfaces',
+          descricao: 'Defina contratos para seu código e evite bugs bobos.',
+          duracao: '20 min',
+          tempoEstimado: '30 min',
+          conteudo: `TypeScript permite que você diga: "esta variável SÓ aceita números". 
+Interfaces definem o formato de objetos complexos.`,
+          codigo: `interface Usuario {
+  id: number;
+  nome: string;
 }
-console.log(somar("2", 3))   // "23" — errado!
 
-// TypeScript — com proteção
-function somar(a: number, b: number): number {
-  return a + b
-}
-console.log(somar("2", 3))   // ERRO antes de rodar!
-// Argument of type 'string' is not assignable to type 'number'`,
-          dica: 'O TypeScript não roda no navegador — ele é compilado para JavaScript. O Angular cuida dessa compilação automaticamente.'
+const me: Usuario = { id: 1, nome: 'Marcos' };`,
+          tarefa: 'Crie uma interface para um Produto, contendo nome e preco.',
+          linksExternos: [
+            { titulo: 'Playground TypeScript', url: 'https://www.typescriptlang.org/play' }
+          ]
         }
       ]
     },
     {
-      id: 'angular',
-      titulo: 'Angular',
-      descricao: 'O framework do Google para construir aplicações web modernas, escaláveis e organizadas.',
-      icone: '🅰️',
+      id: 'angular-componentes',
+      titulo: 'Componentes: O Coração',
+      descricao: 'Criação, reutilização e comunicação entre partes da sua App.',
+      icone: '📦',
+      nivel: 'iniciante',
+      aulas: [
+        {
+          id: 'anatomia-componente',
+          titulo: 'Anatomia de um Componente',
+          descricao: 'Entenda o Decorador @Component, o Template e o Estilo.',
+          duracao: '15 min',
+          tempoEstimado: '30 min',
+          conteudo: `Um componente no Angular é uma classe TypeScript com o decorador @Component. 
+Ele define três coisas principais: Selector, Template e Estilo.`,
+          codigo: `@Component({
+  selector: 'app-teste',
+  standalone: true,
+  template: '<h1>Olá!</h1>',
+})
+export class TesteComponent {}`,
+          tarefa: 'Use o comando "ng generate component nome" no terminal.'
+        },
+        {
+          id: 'item-databinding',
+          titulo: 'Databinding: Ligando Dados e Tela',
+          descricao: 'Como passamos dados da classe para o HTML.',
+          duracao: '20 min',
+          tempoEstimado: '45 min de prática',
+          conteudo: `Interpolation {{ }}, Property Binding [ ] e Event Binding ( ). 
+Essa é a base da interatividade no Angular.`,
+          codigo: `<p>{{ titulo }}</p>
+<button [disabled]="travado" (click)="salvar()">OK</button>`,
+          tarefa: 'Crie um contador simples com um botão "+" e "-" que atualiza um valor na tela.'
+        }
+      ]
+    },
+    {
+      id: 'fluxo-e-diretivas',
+      titulo: 'Controle de Fluxo (Novo)',
+      descricao: 'O novo padrão Angular 17+ para condicionais e listas.',
+      icone: '🔀',
+      nivel: 'iniciante',
+      aulas: [
+        {
+          id: 'novo-if-for',
+          titulo: 'O Novo @if e @for',
+          descricao: 'Sintaxe de blocos moderna para layouts dinâmicos.',
+          duracao: '15 min',
+          tempoEstimado: '20 min',
+          conteudo: `O Angular 17+ introduziu uma sintaxe muito mais limpa para condicionais e loops. 
+É mais rápida e fácil de ler que as diretivas antigas.`,
+          codigo: `@if (estaLogado) {
+  <p>Bem-vindo!</p>
+}
+
+@for (item of items; track item.id) {
+  <li>{{ item.nome }}</li>
+}`,
+          dica: 'O "track" no @for é obrigatório e melhora muito a performance de renderização.'
+        }
+      ]
+    },
+    {
+      id: 'signals-reatividade',
+      titulo: 'Signals: Reatividade Moderna',
+      descricao: 'O motor ultra-veloz que move o Angular atual.',
+      icone: '⚡',
       nivel: 'intermediario',
       aulas: [
         {
-          id: 'o-que-e-angular',
-          titulo: 'O que é Angular',
-          descricao: 'Framework vs biblioteca, componentes e a árvore de componentes.',
+          id: 'o-que-sao-signals',
+          titulo: 'O que são Signals?',
+          descricao: 'Rastreamento de estado granular e melhora de performance.',
           duracao: '20 min',
-          conteudo: `Angular é um framework criado pelo Google para construir aplicações web grandes e organizadas. Foi lançado em 2016 e é escrito em TypeScript.
+          tempoEstimado: '40 min',
+          conteudo: `Signals são a maior revolução recente no Angular. 
+Eles permitem que o framework saiba exatamente o que mudou, evitando verificações desnecessárias.`,
+          codigo: `const count = signal(0);
+const double = computed(() => count() * 2);
 
-A diferença entre framework e biblioteca é importante:
-- Biblioteca: você chama quando precisa. É uma ferramenta.
-- Framework: ele chama você. Define a estrutura, as regras, como as peças se encaixam.
+count.set(5);`,
+          tarefa: 'Refatore seu contador anterior para usar Signals em vez de variáveis comuns.',
+          linksExternos: [
+            { titulo: 'Guia de Signals', url: 'https://angular.dev/guide/signals' }
+          ]
+        }
+      ]
+    },
+    {
+      id: 'roteamento-routing',
+      titulo: 'Roteamento e Navegação',
+      descricao: 'Crie aplicações multi-página com o Router do Angular.',
+      icone: '🗺️',
+      nivel: 'intermediario',
+      aulas: [
+        {
+          id: 'configurando-rotas',
+          titulo: 'Configurando Rotas',
+          descricao: 'Mapeando URLs para componentes.',
+          duracao: '20 min',
+          tempoEstimado: '40 min',
+          conteudo: `O Router permite navegar entre componentes sem recarregar a página. 
+Você define um array de configurações e usa <router-outlet> para renderizar.`,
+          codigo: `const routes: Routes = [
+  { path: 'home', component: HomeComponent },
+  { path: 'aula/:id', component: AulaComponent }
+];`,
+          tarefa: 'Crie uma nova rota no seu projeto e navegue até ela usando routerLink.'
+        }
+      ]
+    },
+    {
+      id: 'formularios-e-validacao',
+      titulo: 'Formulários e Validação',
+      descricao: 'Capturando e validando entradas do usuário com segurança.',
+      icone: '📝',
+      nivel: 'intermediario',
+      aulas: [
+        {
+          id: 'reactive-forms',
+          titulo: 'Formulários Reativos',
+          descricao: 'Controle total do formulário via TypeScript.',
+          duracao: '25 min',
+          tempoEstimado: '1 hora de prática',
+          conteudo: `Reactive Forms são baseados em objetos no código TS, permitindo validações complexas e testes fáceis.`,
+          codigo: `form = new FormGroup({
+  email: new FormControl('', [Validators.required, Validators.email])
+});`,
+          tarefa: 'Crie um formulário de login com campos de e-mail e senha, ambos obrigatórios.'
+        }
+      ]
+    },
+    {
+      id: 'servicos-di-power',
+      titulo: 'Serviços e Injeção',
+      descricao: 'Organize sua lógica e compartilhe dados entre componentes.',
+      icone: '💉',
+      nivel: 'avancado',
+      aulas: [
+        {
+          id: 'injecao-moderna',
+          titulo: 'Injeção de Dependência Moderna',
+          descricao: 'Usando a função inject() e serviços Root.',
+          duracao: '15 min',
+          tempoEstimado: '30 min',
+          conteudo: `Serviços devem conter a lógica que não pertence à UI. 
+A Injeção de Dependência permite que o Angular forneça as instâncias necessárias automaticamente.`,
+          codigo: `@Injectable({ providedIn: 'root' })
+export class AuthService {
+  usuario = signal<string | null>(null);
+}
 
-O conceito central do Angular é o componente. Uma aplicação Angular é uma árvore de componentes encaixados uns dentro dos outros.
+// No componente
+private auth = inject(AuthService);`,
+          dica: 'Sempre que possível, use providedIn: "root" para que o serviço seja um Singleton disponível em toda a app.'
+        }
+      ]
+    },
+    {
+      id: 'ia-e-carreira',
+      titulo: 'IA, Carreira e Soft Skills',
+      descricao: 'Dicas para entrevistas, vocabulário do mercado e suporte da IA.',
+      icone: '👔',
+      nivel: 'iniciante',
+      aulas: [
+        {
+          id: 'terminologia-mercado',
+          titulo: 'Vocabulário do Mercado',
+          descricao: 'Jira, Kanban, Claude e mais.',
+          duracao: '15 min',
+          tempoEstimado: 'Leitura leve',
+          conteudo: `No ambiente de trabalho, você ouvirá termos como:
+- **Jira/Trello**: Onde as tarefas nascem.
+- **Kanban**: O quadro que mostra o que está sendo feito.
+- **Claude Code**: A ferramenta que estamos usando para acelerar o desenvolvimento.
 
-Cada componente tem três partes:
-- Template (.html) — o que o usuário vê
-- Classe (.ts) — a lógica por trás da tela
-- Estilo (.css) — a aparência
+O objetivo deste site é que você se sinta confortável em qualquer reunião técnica.`,
+          tarefa: 'Explore o Glossário deste site e tente explicar um termo para um amigo (ou para o Claude!).'
+        },
+        {
+          id: 'papo-com-devs',
+          titulo: 'Conversando com outros Devs',
+          descricao: 'Como pedir ajuda de forma eficiente.',
+          duracao: '15 min',
+          tempoEstimado: 'Para toda a carreira',
+          conteudo: `Desenvolvedores sêniores adoram ajudar quem demonstra que tentou. 
+Antes de perguntar "não funciona", diga: "Tentei fazer X usando a técnica Y, mas recebi o erro Z. Já pesquisei na documentação e vi que...".
 
-Você já sabe HTML, TypeScript e CSS. O Angular organiza essas três coisas que você já conhece numa estrutura padronizada.`,
-          codigo: `// Criando um projeto Angular
-ng new meu-projeto
-
-// Criando um componente
-ng generate component pages/home
-
-// Rodando o servidor de desenvolvimento
-ng serve
-
-// Build para produção
-ng build`,
-          dica: 'ng é o comando do Angular CLI — uma ferramenta de linha de comando que automatiza tarefas repetitivas como criar componentes, serviços e builds.'
+Isso economiza tempo de todos e mostra sua evolução.`,
+          dica: 'O Claude pode ajudar você a formular essas perguntas. Tente: "Claude, como eu pergunto ao meu chefe sobre este erro de TypeScript sem parecer perdido?"'
         }
       ]
     }

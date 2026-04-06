@@ -1,11 +1,29 @@
 .conteudo {
-  max-width: 1100px;
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 80px; /* Espaço para a navbar fixa */
+  background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.03) 0%, transparent 40%);
+}
+
+.margem-conteudo {
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 48px 24px;
+  padding: 0 24px 64px;
+}
+
+/* Transição de entrada suave para as páginas */
+:host {
+  display: block;
+  animation: fade-in 0.5s ease-out;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @media (max-width: 768px) {
-  .conteudo {
-    padding: 24px 16px;
+  .margem-conteudo {
+    padding: 0 16px 40px;
   }
 }

@@ -1,1 +1,50 @@
-<p>modulo-detalhe works!</p>
+@if (modulo()) {
+  <div>
+    <a routerLink="/modulos" class="btn-voltar">← Todos os módulos</a>
+
+    <div class="modulo-header">
+      <span class="modulo-icone">{{ modulo()!.icone }}</span>
+      <div>
+        <span class="nivel" [class]="modulo()!.nivel">{{ modulo()!.nivel }}</span>
+        <h1>{{ modulo()!.titulo }}</h1>
+        <p>{{ modulo()!.descricao }}</p>
+        
+        <div class="progress-container">
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" [style.width.%]="progresso()"></div>
+          </div>
+          <span class="progress-text">{{ progresso() }}% concluído</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="aulas-secao">
+      <h2>{{ modulo()!.aulas.length }} aulas neste módulo</h2>
+      <div class="aulas-lista">
+        @for (aula of modulo()!.aulas; track aula.id; let i = $index) {
+          <a [routerLink]="['/aula', aula.id]" class="aula-item" [class.completa]="isAulaCompleta(aula.id)">
+            <span class="aula-numero">
+               @if (isAulaCompleta(aula.id)) { ✅ } @else { {{ i + 1 }} }
+            </span>
+            <div class="aula-info">
+              <h3>{{ aula.titulo }}</h3>
+              <p>{{ aula.descricao }}</p>
+            </div>
+            <div class="aula-meta">
+              <span class="duracao">{{ aula.duracao }}</span>
+              @if (aula.tempoEstimado) {
+                <span class="tempo-estimado-badge">Estudo: {{ aula.tempoEstimado }}</span>
+              }
+              <span class="seta">→</span>
+            </div>
+          </a>
+        }
+      </div>
+    </div>
+  </div>
+} @else {
+  <div class="nao-encontrado">
+    <p>Módulo não encontrado.</p>
+    <a routerLink="/modulos">← Voltar aos módulos</a>
+  </div>
+}

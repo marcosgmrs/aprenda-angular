@@ -1,1 +1,21 @@
-<p>entrevista works!</p>
+<div class="entrevista-container">
+  <header class="secao-header">
+    <div class="header-badge">Prepare-se para o mercado</div>
+    <h1>Perguntas de Entrevista</h1>
+    <p>As questões mais comuns em processos seletivos para desenvolvedor Angular.</p>
+  </header>
+
+  <div class="perguntas-lista">
+    @for (p of perguntas(); track p.pergunta) {
+      <div class="pergunta-item">
+        <div class="p-header">
+          <span class="nivel-tag" [class]="p.nivel.toLowerCase()">{{ p.nivel }}</span>
+          <h3>{{ p.pergunta }}</h3>
+        </div>
+        <div class="p-resposta">
+          <p>{{ p.resposta }}</p>
+        </div>
+      </div>
+    }
+  </div>
+</div>

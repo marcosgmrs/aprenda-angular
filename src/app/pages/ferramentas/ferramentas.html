@@ -1,1 +1,20 @@
-<p>ferramentas works!</p>
+<div class="ferramentas-container">
+  <div class="banner">
+    <span class="icone-banner">🧰</span>
+    <h1>Recursos e Ferramentas</h1>
+    <p>Os melhores links e utilitários para acelerar seu desenvolvimento Angular.</p>
+  </div>
+
+  <div class="ferramentas-grid">
+    @for (f of ferramentas(); track f.nome) {
+      <a [href]="f.url" target="_blank" class="f-card">
+        <div class="f-icone">{{ f.icone }}</div>
+        <div class="f-info">
+          <h3>{{ f.nome }}</h3>
+          <p>{{ f.descricao }}</p>
+          <span class="f-link">Visitar site →</span>
+        </div>
+      </a>
+    }
+  </div>
+</div>

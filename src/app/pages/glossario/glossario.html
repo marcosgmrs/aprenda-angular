@@ -1,1 +1,24 @@
-<p>glossario works!</p>
+<div class="glossario-container">
+  <header class="secao-header">
+    <h1>Glossário Angular</h1>
+    <p>Os termos essenciais que você precisa conhecer para dominar o framework.</p>
+  </header>
+
+  <div class="busca-status">
+    Mostrando {{ termos().length }} termos técnicos
+  </div>
+
+  <div class="glossario-grid">
+    @for (item of termos(); track item.id) {
+      <div class="termo-card" [attr.id]="item.id">
+        <div class="termo-header">
+          <span class="categoria-tag" [class]="item.categoria.toLowerCase()">
+            {{ item.categoria }}
+          </span>
+          <h3>{{ item.termo }}</h3>
+        </div>
+        <p>{{ item.definicao }}</p>
+      </div>
+    }
+  </div>
+</div>
