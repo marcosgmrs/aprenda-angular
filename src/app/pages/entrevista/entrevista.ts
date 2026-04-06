@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 interface Pergunta {
   pergunta: string;
@@ -18,6 +18,7 @@ interface ConversaSimulada {
   imports: [],
   templateUrl: './entrevista.html',
   styleUrl: './entrevista.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Entrevista {
   perguntas = signal<Pergunta[]>([
