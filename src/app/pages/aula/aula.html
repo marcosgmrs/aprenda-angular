@@ -15,8 +15,9 @@
           @if (aula()!.tempoEstimado) {
             <span class="tempo-estimado">📚 Estudo sugerido: {{ aula()!.tempoEstimado }}</span>
           }
-          <button 
-            class="badge-concluido" 
+          <button
+            type="button"
+            class="badge-concluido"
             [class.is-completa]="isCompleta()"
             (click)="toggleProgresso()"
           >
@@ -29,15 +30,13 @@
     <!-- Banner Opcional -->
     @if (aula()!.imagemUrl) {
       <div class="aula-imagem">
-        <img [src]="aula()!.imagemUrl" [alt]="aula()!.titulo">
+        <img [src]="aula()!.imagemUrl" [alt]="aula()!.titulo" [title]="aula()!.titulo">
       </div>
     }
 
     <!-- Conteúdo da Aula -->
     <main class="aula-conteudo">
-      <div class="texto-principal">
-        {{ aula()!.conteudo }}
-      </div>
+      <div class="texto-principal" [innerHTML]="aula()!.conteudo | markdown"></div>
 
       <!-- Vídeo -->
       @if (aula()!.videoUrl) {
@@ -98,8 +97,9 @@
           <div></div>
         }
 
-        <button 
-          class="btn-concluir-principal" 
+        <button
+          type="button"
+          class="btn-concluir-principal"
           [class.is-completa]="isCompleta()"
           (click)="toggleProgresso()"
         >

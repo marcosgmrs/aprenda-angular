@@ -2,10 +2,11 @@ import { ChangeDetectionStrategy, Component, OnInit, signal, inject } from '@ang
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CursoService, Aula as AulaData, Modulo } from '../../services/curso';
 import { ProgressoService } from '../../services/progresso';
+import { MarkdownPipe } from '../../pipes/markdown.pipe';
 
 @Component({
   selector: 'app-aula',
-  imports: [RouterLink],
+  imports: [RouterLink, MarkdownPipe],
   templateUrl: './aula.html',
   styleUrl: './aula.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
