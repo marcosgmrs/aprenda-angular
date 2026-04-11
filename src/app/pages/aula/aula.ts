@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit, signal, inject } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { CursoService, Aula as AulaData, Modulo } from '../../services/curso';
+import { ChangeDetectionStrategy, Component, signal, inject, input, computed } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { CursoService } from '../../services/curso';
 import { ProgressoService } from '../../services/progresso';
 import { MarkdownPipe } from '../../pipes/markdown.pipe';
 
@@ -11,46 +11,39 @@ import { MarkdownPipe } from '../../pipes/markdown.pipe';
   styleUrl: './aula.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Aula implements OnInit {
-  private route = inject(ActivatedRoute);
+export class Aula {
   private cursoService = inject(CursoService);
   private progressoService = inject(ProgressoService);
 
-  aula = signal<AulaData | null>(null);
-  modulo = signal<Modulo | null>(null);
-  aulaAnteriorId = signal<string | null>(null);
-  proximaAulaId = signal<string | null>(null);
+  // Input vindo da rota (graças ao withComponentInputBinding no app.config)
+  id = input.required<string>();
 
-  isCompleta = signal(false);
+  // Dados carregados reativamente quando o ID muda
+  dados = computed(() => this.cursoService.getAulaPorId(this.id()));
+  
+  aula = computed(() => this.dados()?.aula ?? null);
+  modulo = computed(() => this.dados()?.modulo ?? null);
+  
+  isCompleta = computed(() => this.progressoService.isAulaCompleta(this.id()));
 
-  ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      const id = params.get('id') ?? '';
-      this.carregarAula(id);
-    });
-  }
+  // Lógica de navegação baseada em signals
+  aulaAnteriorId = computed(() => {
+    const mod = this.modulo();
+    const id = this.id();
+    if (!mod) return null;
+    const index = mod.aulas.findIndex(a => a.id === id);
+    return index > 0 ? mod.aulas[index - 1].id : null;
+  });
 
-  carregarAula(id: string) {
-    const dados = this.cursoService.getAulaPorId(id);
-    if (dados) {
-      this.aula.set(dados.aula);
-      this.modulo.set(dados.modulo);
-      this.isCompleta.set(this.progressoService.isAulaCompleta(id));
-      this.setNavegacao(dados.modulo, id);
-    }
-  }
-
-  setNavegacao(modulo: Modulo, aulaId: string) {
-    const index = modulo.aulas.findIndex(a => a.id === aulaId);
-    this.aulaAnteriorId.set(index > 0 ? modulo.aulas[index - 1].id : null);
-    this.proximaAulaId.set(index < modulo.aulas.length - 1 ? modulo.aulas[index + 1].id : null);
-  }
+  proximaAulaId = computed(() => {
+    const mod = this.modulo();
+    const id = this.id();
+    if (!mod) return null;
+    const index = mod.aulas.findIndex(a => a.id === id);
+    return index < mod.aulas.length - 1 ? mod.aulas[index + 1].id : null;
+  });
 
   toggleProgresso() {
-    const id = this.aula()?.id;
-    if (id) {
-      this.progressoService.toggleAula(id);
-      this.isCompleta.set(this.progressoService.isAulaCompleta(id));
-    }
+    this.progressoService.toggleAula(this.id());
   }
 }

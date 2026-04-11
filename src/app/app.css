@@ -1,14 +1,8 @@
-.conteudo {
-  width: 100%;
-  min-height: 100vh;
-  padding-top: 80px; /* Espaço para a navbar fixa */
-  background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.03) 0%, transparent 40%);
-}
-
-.margem-conteudo {
+.container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px 64px;
+  padding: 80px 24px 64px; /* Espaço para a navbar fixa */
+  min-height: calc(100vh - 80px);
 }
 
 /* Transição de entrada suave para as páginas */
@@ -23,7 +17,7 @@
 }
 
 @media (max-width: 768px) {
-  .margem-conteudo {
-    padding: 0 16px 40px;
+  .container {
+    padding: 70px 16px 40px;
   }
 }

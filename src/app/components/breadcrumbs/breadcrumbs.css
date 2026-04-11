@@ -1,0 +1,43 @@
+.breadcrumbs-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: #888;
+  padding: 0.75rem 0;
+  margin-bottom: 1rem;
+}
+
+.crumb-item {
+  color: #999;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+}
+
+.crumb-item:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.crumb-item.active {
+  color: #f59e0b; /* Âmbar do vibecoding */
+  font-weight: 500;
+  pointer-events: none;
+}
+
+.separator {
+  color: #444;
+  user-select: none;
+}
+
+:host {
+  display: block;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}

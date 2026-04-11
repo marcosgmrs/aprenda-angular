@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit, signal, inject, computed } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { CursoService, Modulo } from '../../services/curso';
+import { ChangeDetectionStrategy, Component, inject, computed, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { CursoService } from '../../services/curso';
 import { ProgressoService } from '../../services/progresso';
 
 @Component({
@@ -10,12 +10,14 @@ import { ProgressoService } from '../../services/progresso';
   styleUrl: './modulo-detalhe.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ModuloDetalhe implements OnInit {
-  private route = inject(ActivatedRoute);
+export class ModuloDetalhe {
   private cursoService = inject(CursoService);
   private progressoService = inject(ProgressoService);
 
-  modulo = signal<Modulo | null>(null);
+  // Input vindo da rota
+  id = input.required<string>();
+
+  modulo = computed(() => this.cursoService.getModuloPorId(this.id()) ?? null);
 
   progresso = computed(() => {
     const curModulo = this.modulo();
@@ -23,12 +25,6 @@ export class ModuloDetalhe implements OnInit {
     const ids = curModulo.aulas.map(a => a.id);
     return this.progressoService.getProgressoPorModulo(ids);
   });
-
-  ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id') ?? '';
-    const modulo = this.cursoService.getModuloPorId(id);
-    this.modulo.set(modulo ?? null);
-  }
 
   isAulaCompleta(id: string): boolean {
     return this.progressoService.isAulaCompleta(id);

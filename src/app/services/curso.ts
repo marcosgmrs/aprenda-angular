@@ -2353,6 +2353,78 @@ claude
 # e você aprova ou rejeita cada uma — excelente para aprender`,
           tarefa: 'Pegue um componente que você escreveu. Peça ao Claude Code para revisar e explicar cada sugestão. Não aceite mudanças que você não entendeu.',
           dica: 'Desenvolvedores sêniores não têm vergonha de usar IA. O que os diferencia é saber **avaliar** o que a IA retorna — não aceitar cegamente.'
+        },
+      ]
+    },
+    // =====================================================================
+    // MÓDULO 13: O FUTURO DO ANGULAR E IA
+    // =====================================================================
+    {
+      id: 'futuro-angular-ia',
+      titulo: 'O Futuro do Angular e IA',
+      descricao: 'Zoneless, Signals avançados e como dominar a IA para construir aplicações impossíveis.',
+      icone: '🔮',
+      nivel: 'avancado',
+      aulas: [
+        {
+          id: 'zoneless-performance',
+          titulo: 'Angular Zoneless: Performance Extrema',
+          descricao: 'Removendo o Zone.js para uma aplicação mais leve e rápida.',
+          duracao: '20 min',
+          tempoEstimado: '40 min',
+          conteudo: `O Zone.js foi a alma do Angular por anos, mas ele tem um custo: interceptar todos os eventos assíncronos. No Angular moderno, podemos ser "Zoneless".
+          
+**Vantagens do Zoneless:**
+- Bundle menor (menos ~30kb)
+- Rendering mais rápido
+- Depuração de stack traces muito mais clara
+          
+**Como habilitar no app.config.ts:**`,
+          codigo: `export const appConfig: ApplicationConfig = {
+  providers: [
+    provideExperimentalZonelessChangeDetection(),
+    provideRouter(routes, withComponentInputBinding())
+  ]
+};`,
+          dica: 'Zoneless exige que você use Signals ou ChangeDetectorRef.markForCheck() para notificar o Angular sobre mudanças. Signals são a forma recomendada.'
+        },
+        {
+          id: 'signals-avancados',
+          titulo: 'Signals Avançados: LinkedSignal e Resource',
+          descricao: 'Novas APIs do Angular 19 para gestão de estado e dados assíncronos.',
+          duracao: '25 min',
+          tempoEstimado: '1 hora',
+          conteudo: `Signals evoluíram. Agora temos ferramentas para lidar com sincronização manual de estados e buscas assíncronas nativas.
+          
+**LinkedSignal:** Resolve o problema de resetar um estado quando sua fonte muda.
+          
+**Resource:** A nova forma oficial de buscar dados assíncronos (substituindo padrões complexos de HttpClient + toSignal em muitos casos).`,
+          codigo: `// Exemplo de Resource (Angular 19+)
+const userResource = resource({
+  request: () => ({ id: userId() }),
+  loader: ({ request }) => fetch(\`/api/users/\${request.id}\`).then(r => r.json())
+});
+
+// No template
+@if (userResource.isLoading()) { <p>Carregando...</p> }
+@else { <h1>{{ userResource.value()?.name }}</h1> }`,
+          dica: 'O Resource simplifica drasticamente o tratamento de estados de carregamento e erro sem precisar de Signal intermediário.'
+        },
+        {
+          id: 'prompt-engineering-devs',
+          titulo: 'Prompt Engineering para Devs',
+          descricao: 'Como falar com a IA para obter arquiteturas sólidas, não apenas snippets.',
+          duracao: '30 min',
+          tempoEstimado: '1 hora de prática',
+          conteudo: `Prompt engineering não é sobre "palavras mágicas", é sobre **contexto** e **restrições**.
+          
+**A Técnica do Contexto Completo:**
+Não peça apenas "crie um componente". Peça: "Crie um componente de login em Angular 19, usando Signals, CSS Vanilla, seguindo o padrão BEM e com validação reativa. O componente será usado em um fluxo de checkout."
+          
+**Iteração Assistida:**
+Use a IA para refatorar. "Este código funciona, mas como posso torná-lo mais performático usando as novas APIs de Signals?"`,
+          tarefa: 'Use o Claude para planejar uma funcionalidade complexa (ex: sistema de chat) definindo primeiro as interfaces e a arquitetura de serviços antes de pedir qualquer código de componente.',
+          dica: 'Sempre peça para a IA explicar o "porquê" de uma decisão arquitetural. Isso treina seu senso crítico.'
         }
       ]
     }
