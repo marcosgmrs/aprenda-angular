@@ -1,0 +1,26 @@
+@if (notificationService.message(); as msg) {
+  <div class="toast-wrapper" [class]="msg.type">
+    <div class="toast-content">
+      <div class="icon-area">
+        @switch (msg.type) {
+          @case ('error') { <span>⚠️</span> }
+          @case ('success') { <span>✅</span> }
+          @default { <span>ℹ️</span> }
+        }
+      </div>
+      <p class="message">{{ msg.message }}</p>
+    </div>
+
+    @if (msg.action) {
+      <button class="retry-btn" (click)="msg.action(); notificationService.clear()">
+        {{ msg.actionLabel || 'Tentar novamente' }}
+      </button>
+    }
+    
+    <button class="close-btn" (click)="notificationService.clear()" aria-label="Fechar notificação">
+      ✕
+    </button>
+
+    <div class="progress-line"></div>
+  </div>
+}

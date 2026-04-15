@@ -27,14 +27,14 @@ h1 {
   font-weight: 800;
   letter-spacing: -0.02em;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+  background: linear-gradient(135deg, var(--cor-texto) 0%, var(--cor-texto-secundario) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .secao-header p {
-  color: #888;
+  color: var(--cor-texto-secundario);
   font-size: 1.25rem;
   max-width: 600px;
   margin: 0 auto;
@@ -47,16 +47,16 @@ h1 {
 }
 
 .pergunta-item {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
   border-radius: 20px;
   padding: 2.5rem;
   transition: all 0.3s;
 }
 
 .pergunta-item:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: var(--cor-fundo-hover);
+  border-color: var(--cor-primaria);
   transform: scale(1.01);
 }
 
@@ -67,7 +67,7 @@ h1 {
 h3 {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--cor-texto);
   line-height: 1.3;
   margin: 0.5rem 0 0;
 }
@@ -91,7 +91,7 @@ h3 {
 }
 
 .p-resposta p {
-  color: #aaa;
+  color: var(--cor-texto-secundario);
   font-size: 1.1rem;
   line-height: 1.7;
   margin: 0;
@@ -115,7 +115,7 @@ h3 {
   border: 1px solid var(--cor-borda);
   border-radius: var(--raio-lg);
   padding: 3rem;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
 }
 
 .card-topo h3 {
@@ -124,7 +124,7 @@ h3 {
 }
 
 .contexto {
-  color: #888;
+  color: var(--cor-texto-secundario);
   font-size: 0.95rem;
   margin-bottom: 2.5rem;
 }
@@ -133,7 +133,7 @@ h3 {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--cor-fundo-hover);
   padding: 2rem;
   border-radius: 16px;
   margin-bottom: 2.5rem;
@@ -148,7 +148,7 @@ h3 {
 
 .fala-item.is-user {
   opacity: 1;
-  color: #fff;
+  color: var(--cor-texto);
 }
 
 .autor {

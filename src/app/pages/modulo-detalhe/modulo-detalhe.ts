@@ -13,11 +13,22 @@ import { ProgressoService } from '../../services/progresso';
 export class ModuloDetalhe {
   private cursoService = inject(CursoService);
   private progressoService = inject(ProgressoService);
+  private modulos = this.cursoService.getModulos();
 
   // Input vindo da rota
   id = input.required<string>();
 
   modulo = computed(() => this.cursoService.getModuloPorId(this.id()) ?? null);
+
+  proximoModulo = computed(() => {
+    const moduloAtual = this.modulo();
+    if (!moduloAtual) return null;
+
+    const indiceAtual = this.modulos.findIndex(modulo => modulo.id === moduloAtual.id);
+    if (indiceAtual === -1 || indiceAtual === this.modulos.length - 1) return null;
+
+    return this.modulos[indiceAtual + 1];
+  });
 
   progresso = computed(() => {
     const curModulo = this.modulo();

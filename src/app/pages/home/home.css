@@ -38,7 +38,7 @@
   font-size: 1.25rem;
   line-height: 1.6;
   margin-bottom: 3rem;
-  color: #888;
+  color: var(--cor-texto-secundario);
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
@@ -62,6 +62,11 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.btn-primario,
+.btn-primario:visited {
+  color: #fff;
+}
+
 .btn-primario:hover {
   background: #2563eb;
   transform: translateY(-2px);
@@ -70,18 +75,24 @@
 
 .btn-secundario {
   padding: 1rem 2.5rem;
-  background: rgba(255, 255, 255, 0.03);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: color-mix(in srgb, var(--cor-fundo-card) 88%, var(--cor-fundo) 12%);
+  color: var(--cor-texto);
+  border: 1px solid var(--cor-borda);
   border-radius: 12px;
   font-size: 1rem;
   font-weight: 600;
   transition: all 0.3s;
 }
 
+.btn-secundario,
+.btn-secundario:visited {
+  color: var(--cor-texto);
+}
+
 .btn-secundario:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: var(--cor-fundo-hover);
+  border-color: var(--cor-primaria);
+  color: var(--cor-texto);
 }
 
 .hero-stats {
@@ -90,8 +101,8 @@
   justify-content: center;
   gap: 4rem;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
   border-radius: 24px;
   backdrop-filter: blur(10px);
 }
@@ -99,13 +110,13 @@
 .stat-numero {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #fff;
+  color: var(--cor-texto);
   line-height: 1;
 }
 
 .stat-label {
   font-size: 0.85rem;
-  color: #666;
+  color: var(--cor-texto-secundario);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -114,7 +125,7 @@
 .stat-sep {
   width: 1px;
   height: 40px;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--cor-borda);
 }
 
 /* Grid de Módulos */
@@ -139,15 +150,15 @@
   flex-direction: column;
   gap: 1.5rem;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
   border-radius: 24px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
 }
 
 .modulo-card:hover {
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--cor-fundo-hover);
   border-color: rgba(59, 130, 246, 0.3);
   transform: translateY(-8px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
@@ -155,7 +166,7 @@
 
 .modulo-icone {
   font-size: 2.5rem;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--cor-fundo-hover);
   width: 64px;
   height: 64px;
   display: flex;
@@ -167,14 +178,14 @@
 .modulo-info h3 {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--cor-texto);
   margin-bottom: 0.5rem;
 }
 
 .modulo-info p {
   font-size: 0.95rem;
   line-height: 1.6;
-  color: #888;
+  color: var(--cor-texto-secundario);
   margin-bottom: 1.5rem;
 }
 
@@ -193,7 +204,7 @@
 
 .aulas-count {
   font-size: 0.85rem;
-  color: #666;
+  color: var(--cor-texto-secundario);
   font-weight: 600;
 }
 
@@ -225,13 +236,13 @@
 .destaque-card h3 {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--cor-texto);
   margin-bottom: 1rem;
 }
 
 .destaque-card p {
   font-size: 0.95rem;
-  color: #777;
+  color: var(--cor-texto-secundario);
 }
 
 @media (max-width: 900px) {

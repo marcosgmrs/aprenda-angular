@@ -46,6 +46,7 @@ export class Breadcrumbs {
 
     segments.forEach((segment, index) => {
       currentUrl += `/${segment}`;
+      let crumbUrl = currentUrl;
       let label = segment.charAt(0).toUpperCase() + segment.slice(1);
 
       // Tradução de IDs técnicos para Títulos reais do CursoService
@@ -58,11 +59,15 @@ export class Breadcrumbs {
 
       // Ajustes específicos de labels
       if (segment === 'modulos') label = 'Trilha de Módulos';
+      if (segment === 'modulo') {
+        label = 'Módulo';
+        crumbUrl = '/modulos';
+      }
       if (segment === 'glossario') label = 'Glossário';
       if (segment === 'ferramentas') label = 'Ferramentas';
       if (segment === 'entrevista') label = 'Entrevista';
 
-      breadcrumbs.push({ label, url: currentUrl });
+      breadcrumbs.push({ label, url: crumbUrl });
     });
     return breadcrumbs;
   });

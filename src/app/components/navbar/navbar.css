@@ -33,8 +33,6 @@ nav {
   justify-content: center;
   width: 28px;
   height: 28px;
-  background: var(--cor-primaria);
-  color: #fff;
   border-radius: var(--raio);
   font-size: 14px;
   font-weight: 700;

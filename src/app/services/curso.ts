@@ -775,6 +775,25 @@ type AdminOuUser = Admin | Usuario;`,
           ]
         },
         {
+          id: 'union-types-guards',
+          titulo: 'Union Types e Type Guards',
+          descricao: 'Trabalhando com flexibilidade e segurança de tipos.',
+          duracao: '20 min',
+          conteudo: `Union Types permitem que uma variável aceite mais de um tipo (ex: string | number). Type Guards são a forma de "provar" ao compilador qual tipo você está usando em um bloco de código.
+
+**Type Guards comuns:**
+- \`typeof\`: para tipos primitivos.
+- \`instanceof\`: para classes.
+- \`in\`: para verificar se uma propriedade existe em um objeto.`,
+          codigo: `function formatar(valor: string | number) {
+  if (typeof valor === 'string') {
+    return valor.toUpperCase(); // TS sabe que é string
+  }
+  return valor.toFixed(2); // TS sabe que é number
+}`,
+          dica: "Type Guards eliminam a necessidade de 'casting' manual (o 'as'), tornando o código mais seguro contra erros de runtime."
+        },
+        {
           id: 'generics',
           titulo: 'Generics: Código Reutilizável e Tipado',
           descricao: 'Funções e classes que funcionam com qualquer tipo sem perder a segurança.',
@@ -2293,6 +2312,14 @@ Link: https://meu-projeto.vercel.app`,
           dica: 'Qualidade > Quantidade. Três projetos bem documentados com READMEs claros valem mais que dez repositórios sem descrição. Pense no recrutador: ele tem 30 segundos.'
         },
         {
+          id: 'bundle-analyzer',
+          titulo: 'Analisando o Bundle',
+          descricao: 'Como identificar quais bibliotecas estão pesando no seu app.',
+          duracao: '10 min',
+          conteudo: 'Usar o source-map-explorer é vital. Um dev sênior sabe que cada KB importa para a experiência do usuário, especialmente em conexões 4G/5G instáveis.',
+          dica: 'Execute sempre "ng build --source-map" para uma análise precisa.'
+        },
+        {
           id: 'papo-com-devs',
           titulo: 'Conversando com outros Devs',
           descricao: 'Como pedir ajuda de forma eficiente.',
@@ -2312,6 +2339,82 @@ Mesma fórmula. "Claude, estou tentando [objetivo] em Angular. Tentei [abordagem
 **Quando perguntar a colegas:**
 Mesma fórmula, mas pesquise no mínimo 10 minutos antes. Usar Google, Stack Overflow e a documentação oficial é esperado de qualquer desenvolvedor.`,
           dica: 'O Claude pode ajudar você a formular essas perguntas. Tente: "Claude, como eu explico este problema técnico para o meu tech lead de forma clara e profissional?"'
+        },
+        {
+          id: 'google-lighthouse',
+          titulo: 'Google Lighthouse',
+          descricao: 'Analisando Performance, SEO e Acessibilidade.',
+          duracao: '15 min',
+          conteudo: `O Lighthouse é uma ferramenta automatizada do Chrome DevTools para melhorar a qualidade de páginas web. Um dev Angular de elite busca sempre o "100/100/100/100".`,
+          dica: 'Rode o Lighthouse sempre em modo Incógnito para que extensões do browser não interfiram nos resultados de performance.'
+        },
+        {
+          id: 'entrevista-patterns',
+          titulo: 'Entrevistas: Design Patterns',
+          descricao: 'Singleton, Factory e Observer no mundo Angular.',
+          duracao: '20 min',
+          conteudo: `Entrevistadores plenos/seniores adoram perguntar sobre padrões de projeto. No Angular:
+- **Singleton**: Seus serviços com providedIn: 'root'.
+- **Observer**: RxJS e a forma como o framework lida com eventos.
+- **Decorator**: @Component, @Injectable...`,
+          dica: 'Não decore o código dos patterns, entenda o problema que eles resolvem.'
+        },
+        {
+          id: 'ferramentas-analise',
+          titulo: 'Ferramentas de Análise de Bundle',
+          descricao: 'Descubra quem está deixando seu app pesado.',
+          duracao: '15 min',
+          conteudo: `Para ser um dev sênior, você precisa dominar o tamanho do seu código. O **source-map-explorer** é a ferramenta essencial para visualizar o que compõe seus arquivos finais.`,
+          codigo: `# Instalar e rodar a análise
+npm install -g source-map-explorer
+ng build --source-map
+source-map-explorer dist/meu-app/browser/*.js`,
+          dica: 'Use isso para decidir se uma biblioteca externa realmente vale o peso que adiciona ao seu projeto.'
+        },
+        {
+          id: 'metodo-star-entrevista',
+          titulo: 'Entrevistas: O Método STAR',
+          descricao: 'Como responder perguntas comportamentais com clareza.',
+          duracao: '20 min',
+          conteudo: `Recrutadores amam objetividade. O método STAR ajuda você a estruturar suas respostas:
+- **S**ituation: O contexto.
+- **T**ask: O desafio ou meta.
+- **A**ction: O que VOCÊ fez especificamente.
+- **R**esult: O resultado mensurável alcançado.`,
+          tarefa: 'Escreva uma situação real que você viveu em um projeto seguindo a estrutura STAR e peça para o Claude revisar.',
+          dica: 'Foque mais na AÇÃO e no RESULTADO. É isso que demonstra sua competência técnica.'
+        },
+        {
+          id: 'soft-skills-negociacao',
+          titulo: 'Negociação de Prazos',
+          descricao: 'Como dizer "não" ou pedir mais tempo de forma profissional.',
+          duracao: '15 min',
+          conteudo: 'Aprenda a fundamentar seus prazos com base na complexidade técnica e dívida técnica acumulada. Transparência gera confiança com os gestores.',
+          dica: 'Sempre ofereça uma alternativa: "Não consigo entregar X e Y na sexta, mas consigo X completo e Y na segunda".'
+        },
+        {
+          id: 'chrome-devtools-mastery',
+          titulo: 'Chrome DevTools: Além do Console',
+          descricao: 'Domine a ferramenta de inspeção para debugar performance e rede.',
+          duracao: '20 min',
+          conteudo: 'Aprenda a usar a aba "Network" para inspecionar payloads de API e a aba "Performance" para identificar por que sua aplicação está perdendo frames (jank).',
+          dica: 'Use o atalho Ctrl+Shift+C (ou Cmd+Shift+C) para inspecionar elementos instantaneamente.'
+        },
+        {
+          id: 'mock-interviews-ia',
+          titulo: 'Simulando Entrevistas com IA',
+          descricao: 'Como usar o Claude para praticar o "Live Coding".',
+          duracao: '15 min',
+          conteudo: 'Peça ao Claude: "Aja como um entrevistador técnico sênior de Angular. Me dê um desafio de lógica de nível pleno e avalie minha solução baseada em performance e legibilidade".',
+          dica: 'Não peça a resposta. Peça dicas se travar. O objetivo é treinar o raciocínio sob pressão.'
+        },
+        {
+          id: 'postman-e-bruno',
+          titulo: 'Postman e Bruno: Testando APIs',
+          descricao: 'Ferramentas externas para validar contratos de API antes de codar.',
+          duracao: '15 min',
+          conteudo: 'Antes de escrever o serviço HttpClient, valide se a API retorna o que você espera usando ferramentas como Postman ou a alternativa open-source Bruno.',
+          dica: 'Você pode exportar suas coleções do Postman para que outros devs da equipe testem a mesma API com um clique.'
         },
         {
           id: 'ia-no-fluxo',
@@ -2432,6 +2535,10 @@ Use a IA para refatorar. "Este código funciona, mas como posso torná-lo mais p
 
   getModulos(): Modulo[] {
     return this.modulos;
+  }
+
+  getTotalAulas(): number {
+    return this.modulos.reduce((acc, mod) => acc + mod.aulas.length, 0);
   }
 
   getModuloPorId(id: string): Modulo | undefined {

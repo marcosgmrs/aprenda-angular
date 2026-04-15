@@ -4,21 +4,49 @@
     <p>Os termos essenciais que você precisa conhecer para dominar o framework.</p>
   </header>
 
+  <div class="filtros-container">
+    @for (cat of categorias; track cat) {
+      <button 
+        (click)="setFilter(cat)"
+        [class.active]="categoriaSelecionada() === cat"
+        class="filtro-btn">
+        {{ cat }}
+      </button>
+    }
+  </div>
+
   <div class="busca-status">
-    Mostrando {{ termos().length }} termos técnicos
+    @if (categoriaSelecionada() !== 'Todos') { Filtrando por: <strong>{{ categoriaSelecionada() }}</strong> — }
+    Mostrando {{ termosFiltrados().length }} termos técnicos
   </div>
 
   <div class="glossario-grid">
-    @for (item of termos(); track item.id) {
+    @if (carregando()) {
+      @for (i of [1,2,3,4,5,6]; track i) {
+        <div class="termo-card skeleton-card">
+          <div class="skeleton-tag"></div>
+          <div class="skeleton-title"></div>
+          <div class="skeleton-text"></div>
+          <div class="skeleton-text short"></div>
+        </div>
+      }
+    } @else {
+      @for (item of termosFiltrados(); track item.id) {
       <div class="termo-card" [attr.id]="item.id">
         <div class="termo-header">
           <span class="categoria-tag" [class]="item.categoria.toLowerCase()">
             {{ item.categoria }}
           </span>
-          <h3>{{ item.termo }}</h3>
+          <h3>
+            {{ item.termo }}
+            <span class="tech-tag" [class]="item.tecnologia.toLowerCase()">
+              {{ item.tecnologia }}
+            </span>
+          </h3>
         </div>
         <p>{{ item.definicao }}</p>
       </div>
+      }
     }
   </div>
 </div>

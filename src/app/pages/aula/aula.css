@@ -2,33 +2,34 @@
   max-width: 900px;
   margin: 0 auto;
   padding: 2rem 1rem 5rem;
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--cor-fundo-card);
   min-height: 100vh;
+  border-radius: var(--raio-lg);
 }
 
 /* Header */
 .aula-header {
   margin-bottom: 3rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--cor-borda);
 }
 
 .breadcrumb {
   display: flex;
   gap: 0.5rem;
   font-size: 0.9rem;
-  color: #888;
+  color: var(--cor-texto-secundario);
   margin-bottom: 1rem;
 }
 
 .breadcrumb a {
-  color: #888;
+  color: var(--cor-texto-secundario);
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .breadcrumb a:hover {
-  color: #fff;
+  color: var(--cor-texto);
 }
 
 .titulo-area {
@@ -43,7 +44,7 @@ h1 {
   font-weight: 800;
   margin: 0;
   line-height: 1.1;
-  background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+  background: linear-gradient(135deg, var(--cor-texto) 0%, var(--cor-texto-secundario) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -59,7 +60,7 @@ h1 {
 
 .duracao {
   font-size: 0.95rem;
-  color: #666;
+  color: var(--cor-texto-secundario);
 }
 
 .tempo-estimado {
@@ -69,9 +70,9 @@ h1 {
 }
 
 .badge-concluido {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #aaa;
+  background: var(--cor-fundo-hover);
+  border: 1px solid var(--cor-borda);
+  color: var(--cor-texto-secundario);
   padding: 0.5rem 1rem;
   border-radius: 50px;
   font-size: 0.85rem;
@@ -87,14 +88,14 @@ h1 {
 
 .badge-concluido:hover {
   transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.3);
+  border-color: var(--cor-primaria);
 }
 
 /* Conteúdo */
 .aula-conteudo {
   font-size: 1.15rem;
   line-height: 1.7;
-  color: #ccc;
+  color: var(--cor-texto-secundario);
   margin-bottom: 4rem;
 }
 
@@ -202,13 +203,13 @@ code {
 .links-secao {
   margin: 3rem 0;
   padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--cor-borda);
 }
 
 .links-secao h4 {
   font-size: 1.1rem;
   margin-bottom: 1.5rem;
-  color: #fff;
+  color: var(--cor-texto);
 }
 
 .links-grid {
@@ -218,8 +219,8 @@ code {
 }
 
 .material-link {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--cor-fundo-hover);
+  border: 1px solid var(--cor-borda);
   padding: 0.75rem 1.25rem;
   border-radius: 10px;
   color: #60a5fa;
@@ -264,9 +265,9 @@ code {
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(10, 10, 12, 0.8);
+  background: color-mix(in srgb, var(--cor-fundo) 82%, transparent);
   backdrop-filter: blur(20px);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--cor-borda);
   padding: 1rem 2rem;
   z-index: 100;
 }
@@ -282,7 +283,7 @@ code {
 
 .btn-nav {
   text-decoration: none;
-  color: #888;
+  color: var(--cor-texto-secundario);
   font-weight: 600;
   transition: all 0.2s;
   display: flex;
@@ -292,7 +293,7 @@ code {
 
 .btn-nav.proxima {
   justify-content: flex-end;
-  color: #fff;
+  color: var(--cor-texto);
 }
 
 .btn-nav:hover {

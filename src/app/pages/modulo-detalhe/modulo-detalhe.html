@@ -1,6 +1,14 @@
 @if (modulo()) {
-  <div>
-    <a routerLink="/modulos" class="btn-voltar">← Todos os módulos</a>
+  <div class="modulo-detalhe-pagina">
+    <div class="modulo-topo-nav">
+      <a routerLink="/modulos" class="btn-voltar">← Todos os módulos</a>
+
+      @if (proximoModulo(); as proximo) {
+        <a [routerLink]="['/modulo', proximo.id]" class="btn-proximo-modulo">
+          Próximo módulo →
+        </a>
+      }
+    </div>
 
     <div class="modulo-header">
       <span class="modulo-icone">{{ modulo()!.icone }}</span>

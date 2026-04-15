@@ -1,6 +1,18 @@
+<app-network-status />
+
+<button class="theme-toggle" (click)="themeService.toggle()" [attr.aria-label]="'Mudar para tema ' + (themeService.theme() === 'dark' ? 'claro' : 'escuro')">
+  @if (themeService.theme() === 'dark') {
+    <span>☀️</span>
+  } @else {
+    <span>🌙</span>
+  }
+</button>
+
 <app-navbar />
 
-<main class="container">
+<main class="container" [@routeAnimations]="outlet.isActivated ? outlet.activatedRoute : ''">
   <app-breadcrumbs />
-  <router-outlet />
+  <router-outlet #outlet="outlet" />
 </main>
+
+<app-notification />

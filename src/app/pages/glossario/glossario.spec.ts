@@ -1,22 +1,24 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TestBed } from '@angular/core/testing';
 import { Glossario } from './glossario';
+import { describe, it, expect, beforeEach } from 'vitest';
 
-describe('Glossario', () => {
+describe('Glossario Component - Data Integrity', () => {
   let component: Glossario;
-  let fixture: ComponentFixture<Glossario>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [Glossario],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(Glossario);
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [Glossario]
+    });
+    const fixture = TestBed.createComponent(Glossario);
     component = fixture.componentInstance;
-    await fixture.whenStable();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('deve garantir que todos os termos tenham a propriedade tecnologia preenchida corretamente', () => {
+    const termos = component.termos();
+    
+    termos.forEach(termo => {
+      expect(termo.tecnologia, `O termo "${termo.termo}" está sem a propriedade tecnologia definida.`).toBeDefined();
+      expect(['Angular', 'TypeScript', 'Geral']).toContain(termo.tecnologia);
+    });
   });
 });
